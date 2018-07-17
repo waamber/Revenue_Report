@@ -7,7 +7,6 @@ namespace Revenue_CodeChallenge.Models
 {
 	public class Report
 	{
-		public int ReportId { get; set; }
 		public int ItemId { get; set; }
 	}
 }

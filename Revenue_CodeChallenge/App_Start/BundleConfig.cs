@@ -19,6 +19,14 @@ namespace Revenue_CodeChallenge
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
 					  "~/Scripts/bootstrap.js"));
 
+			bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+						"~/Scripts/angular.js",
+						"~/Scripts/angular-route.js",
+						"~/Scripts/angular-ui/ui-bootstrap-tpls.*",
+						"~/app/app.js")
+			.IncludeDirectory("~/app/controllers", "*.js", true)
+			.IncludeDirectory("~/app/services", "*.js", true));
+
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
 					  "~/Content/site.css"));

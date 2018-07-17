@@ -7,6 +7,7 @@ namespace Revenue_CodeChallenge.Models
 {
 	public class VendorDto
 	{
+		public int VendorId { get; set; }
 		public string Vendor { get; set; }
 		public string Vendor_address { get; set; }
 	}

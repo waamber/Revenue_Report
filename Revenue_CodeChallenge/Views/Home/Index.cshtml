@@ -1,10 +1,13 @@
-﻿@*<div ng-include="'./app/partials/nav.html'"></div>*@
-<div class="jumbotron">
-    <div>
-        <label for="avatar">File:</label>
-        <input type="file"
-               id="data-upload" name="data-upload"
-               accept=".tsv" />
-        <button>Upload</button>
+﻿<div ng-include="'./app/partials/nav.html'"></div>
+<div ng-controller="AddReportController">
+    <div class="jumbotron">
+        <div>
+            <label for="avatar">File:</label>
+            <input type="file"
+                   id="uploaded-report"
+                   accept=".tsv" />
+            @*<button ng-click="addReport()">Upload</button>*@
+        </div>
     </div>
 </div>
+

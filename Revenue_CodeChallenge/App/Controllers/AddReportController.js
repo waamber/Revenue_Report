@@ -1,7 +1,6 @@
 ﻿app.controller("AddReportController", ["$scope", "$http", "$location", "$routeParams",
     function ($scope, $http, $location, $routeParams) {
 
-
         document.getElementById("uploaded-report").addEventListener("change", function (e) {
             var file = e.target.files[0];
 
@@ -13,7 +12,6 @@
             };
 
             reader.readAsText(file);
-           
         });
 
         function tsvToJson(tsvFile) {
@@ -32,11 +30,18 @@
                 result.push(obj);
             }
 
-            var tsvToJSON = JSON.stringify(result)
-
-            console.log(tsvToJSON);
+            var tsvToJSON = result;
+            arrayOfObjects(tsvToJSON);
             return tsvToJSON;
         }
+
+        function arrayOfObjects(array) {
+            for (var key in array) {
+                if (array.hasOwnProperty(key)){
+                    console.log(array[key]);
+                }
+            };
+        };
 
     }
 ]);

@@ -16,7 +16,7 @@ namespace Revenue_CodeChallenge.Services
 			return new SqlConnection(ConfigurationManager.ConnectionStrings["ShoppingCart"].ConnectionString);
 		}
 
-		public int AddReport(ReportDto report)
+		public int AddReport(Report report)
 		{
 			using (var db = GetDb())
 			{

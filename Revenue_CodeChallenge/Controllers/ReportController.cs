@@ -14,21 +14,23 @@ namespace Revenue_CodeChallenge.Controllers
 	public class ReportController : ApiController
 	{
 		[Route(""), HttpPost]
-		public HttpResponseMessage AddReport(Report report, Vendors vendor, Items item)
+		public HttpResponseMessage AddReport(Report report)
 		{
-			var reportRepo = new ReportRepo();
-			var reportResults = reportRepo.AddReport(report);
-
-			var vendorRepo = new VendorRepo();
-			var vendorResults = vendorRepo.AddVendor(vendor);
-
-			//var itemRepo = new ItemRepo();
-			//var itemResults = itemRepo.InsertItem(item, report.ReportId, vendor.VendorId);
+			var repo = new ReportRepo();
+			var results = repo.AddReport(report);
 
 			return Request.CreateResponse(HttpStatusCode.OK);
 
 		}
 
+		[Route("{reportName}"), HttpGet]
+		public HttpResponseMessage GetReport(string reportName)
+		{
+			var repo = new ReportRepo();
+			var results = repo.GetReport(reportName);
+
+			return Request.CreateResponse(HttpStatusCode.Accepted);
+		}
 	}
 
 

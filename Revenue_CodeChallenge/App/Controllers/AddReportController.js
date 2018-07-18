@@ -1,5 +1,5 @@
-﻿app.controller("AddReportController", ["$scope", "$http", "$location", "$routeParams",
-    function ($scope, $http, $location, $routeParams) {
+﻿app.controller("AddReportController", ["$scope", "$http", "$location", "$routeParams", "ReportService",
+    function ($scope, $http, $location, $routeParams, ReportService) {
 
         document.getElementById("uploaded-report").addEventListener("change", function (e) {
             var file = e.target.files[0];
@@ -36,9 +36,21 @@
         }
 
         function arrayOfObjects(array) {
+            var items = [];
+            var reportObj = {};
+            reportObj.ReportName = "Test Report";
+            ReportService.addReport(reportObj);
             for (var key in array) {
-                if (array.hasOwnProperty(key)){
-                    console.log(array[key]);
+                if (array.hasOwnProperty(key)) {
+                    items.push(array[key]);
+                    items.forEach(function (obj) {
+                        {
+                            obj.ReportId = null;
+                        }
+                    });
+
+
+                    //ReportService.addReport(array[key]);
                 }
             };
         };

@@ -22,19 +22,19 @@ namespace Revenue_CodeChallenge.Services
 			{
 				db.Open();
 				return db.Execute(@"INSERT INTO [dbo].[Report]
-									 ([ItemId])
+									 ([ReportName])
 									VALUES
-									 ([@ItemId])", report);
+									 (@ReportName)", report);
 			}
 		}
 
-		public ReportDto getReport(int reportId)
+		public ReportDto GetReport(string reportName)
 		{
 			using (var db = GetDb())
 			{
 				db.Open();
-				return db.QueryFirst<ReportDto>(@"SELECT * FROM [dbo].[[Report]
-												  WHERE ReportId = @ReportId", new { reportId });
+				return db.QueryFirst<ReportDto>(@"SELECT * FROM [dbo].[Report]
+												  WHERE ReportName = @reportName", new { reportName });
 			}
 		}
 	}

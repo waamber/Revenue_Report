@@ -13,6 +13,7 @@ namespace Revenue_CodeChallenge.Models
 		public double Item_price { get; set; }
 		public int Item_count { get; set; }
 		public int ReportId { get; set; }
-		public int VendorId { get; set; }
+		public string Vendor{ get; set; }
+		public string Vendor_address { get; set; }
 	}
 }

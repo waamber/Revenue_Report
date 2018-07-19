@@ -42,33 +42,50 @@
             var reportObj = {};
             reportObj.ReportName = $scope.reportName;
 
-            ReportService.addReport(reportObj).then(function () {
-                ReportService.getReport(reportObj.ReportName).then(function (results) {
-                    $scope.reportId = results.ReportId;
-                }).catch(function (err) {
-                    console.log("Error in ReportService.getReport", err);
-                });
-            }).catch(function (err) {
-                console.log("Error in ReportService.addReport", err);
-            });
+            addReportToDb(reportObj);
 
-            for (var key in array) {
-                if (array.hasOwnProperty(key)) {
-                    items.push(array[key]);
-                    items.forEach(function (obj) {
-                        {
-                            obj.ReportId = $scope.reportId;
-                        }
-                    });
+            //    for (var key in array) {
+            //        if (array.hasOwnProperty(key)) {R
+            //            items.push(array[key]);
+            //            items.forEach(function (obj) {
+            //                {
+            //                    obj.ReportId = $scope.reportId;
+            //                }
+            //            });
 
-                    ItemService.addItem(obj).then(function (results) {
-                        $location.path()
-                    }).catch(function (err) {
-                        console.log("Error in ItemService.addItem", err);
-                    });
-                };
-            };
+            //            ItemService.addItem(obj).then(function (results) {
+            //                $location.path()
+            //            }).catch(function (err) {
+            //                console.log("Error in ItemService.addItem", err);
+            //            });
+            //        };
+            //    };
+            //};
+
+
         };
-    };
 
+        const addReportToDb = function (report) {
+            ReportService.addReport(report).then(function (result) {
+                if (result) {
+                    getReportId($scope.reportName);
+                }
+                    
+               
+            }).catch((function (err) {
+                console.log("Error in addReportToDb", err);
+            }));
+        };
+
+        const getReportId = function (reportName) {
+            ReportService.getReport(reportName).then(function (results) {
+                if (results) {
+                    $scope.ReportId = results.data.ReportId;
+                    console.log($scope.ReportId);
+                }
+            }).catch(function (err) {
+                console.log("Error in getReportId", err);
+            });
+        };
+    }
 ]);

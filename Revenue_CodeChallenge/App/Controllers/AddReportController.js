@@ -37,10 +37,8 @@
         };
 
         function addReport(array) {
-
             var reportObj = {};
             reportObj.ReportName = $scope.reportName;
-
             addReportToDb(reportObj);
         };
 
@@ -54,13 +52,11 @@
 
         const getReportId = function (reportName) {
             ReportService.getReport(reportName).then(function (results) {
-                console.log(results);
                 $scope.ReportId = results.data.ReportId;
                 var obj = {
                     ReportId: $scope.ReportId,
                     ReportName: reportName
                 };
-
                 arrayOfItems($scope.reportItems, obj);
             }).catch(function (err) {
                 console.log("Error in getReportId", err);
@@ -68,23 +64,15 @@
         };
 
         const arrayOfItems = function (array, obj) {
-            var items = [];
-            for (var key in array) {
-                if (array.hasOwnProperty(key)) {
-                    items.push(array[key]);
-                };
+            array.forEach(function (obj) {
+                obj.ReportId = $scope.ReportId;
+                ItemService.addItem(obj).then(function (results) {
+                    //$location.path()
+                }).catch(function (err) {
+                    console.log("Error in ItemService.addItem", err);
+                })
+            });
+        };
 
-                items.forEach(function (obj) {
-                    {
-                        obj.ReportId = $scope.ReportId;
-                        ItemService.addItem(obj).then(function (results) {
-                            $location.path()
-                        }).catch(function (err) {
-                            console.log("Error in ItemService.addItem", err);
-                        });
-                    }
-                });
-            };
-        }
     }
 ]);

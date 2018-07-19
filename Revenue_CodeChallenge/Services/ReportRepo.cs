@@ -28,13 +28,13 @@ namespace Revenue_CodeChallenge.Services
 			}
 		}
 
-		public ReportDto GetReport(string reportName)
+		public Report GetReport(string reportName)
 		{
 			using (var db = GetDb())
 			{
 				db.Open();
-				return db.QueryFirst<ReportDto>(@"SELECT * FROM [dbo].[Report]
-												  WHERE ReportName = @reportName", new { reportName });
+				return db.QueryFirst<Report>(@"SELECT * FROM [dbo].[Report]
+												  WHERE ReportName = @reportName", new { reportName});
 			}
 		}
 	}

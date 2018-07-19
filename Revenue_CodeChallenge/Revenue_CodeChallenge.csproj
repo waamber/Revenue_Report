@@ -188,6 +188,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -210,6 +211,7 @@
     <Content Include="App\Controllers\AddReportController.js" />
     <Content Include="App\Partials\home.html" />
     <Content Include="App\Partials\nav.html" />
+    <Content Include="App\Services\ItemService.js" />
     <Content Include="App\Services\ReportService.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-grid.css" />

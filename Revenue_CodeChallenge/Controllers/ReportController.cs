@@ -29,7 +29,7 @@ namespace Revenue_CodeChallenge.Controllers
 			var repo = new ReportRepo();
 			var results = repo.GetReport(reportName);
 
-			return Request.CreateResponse(HttpStatusCode.Accepted);
+			return Request.CreateResponse(HttpStatusCode.OK, results);
 		}
 	}
 

@@ -16,7 +16,7 @@ namespace Revenue_CodeChallenge.Services
 			return new SqlConnection(ConfigurationManager.ConnectionStrings["ShoppingCart"].ConnectionString);
 		}
 
-		public int InsertItem(Items item, int reportId, int vendorId)
+		public int AddItem(Items item)
 		{
 			using(var db= GetDb())
 			{

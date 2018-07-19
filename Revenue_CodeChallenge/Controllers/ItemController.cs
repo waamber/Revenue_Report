@@ -14,7 +14,7 @@ namespace Revenue_CodeChallenge.Controllers
 	public class ItemController : ApiController
 	{
 		[Route(""), HttpPost]
-		public HttpResponseMessage AddItem(Items item)
+		public HttpResponseMessage AddItem(ItemDto item)
 		{
 			var repo = new ItemRepo();
 			var results = repo.AddItem(item);

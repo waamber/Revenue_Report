@@ -16,7 +16,7 @@ namespace Revenue_CodeChallenge.Services
 			return new SqlConnection(ConfigurationManager.ConnectionStrings["ShoppingCart"].ConnectionString);
 		}
 
-		public int InsertItem(Items item, int reportId, int vendorId)
+		public int AddItem(ItemDto item)
 		{
 			using(var db= GetDb())
 			{
@@ -27,14 +27,16 @@ namespace Revenue_CodeChallenge.Services
 									 [Item_price],
 									 [Item_description],
 									 [ReportId],
-									 [VendorId])
+									 [Vendor],
+									 [Vendor_address])
 									VALUES
-									 ([@Item],
-									 [@Item_count],
-									 [@Item_price],
-									 [@Item_description],
-									 [@ReportId],
-									 [@VendorId])", item);
+									 (@Item,
+									 @Item_count,
+									 @Item_price,
+									 @Item_description,
+									 @ReportId,
+									 @Vendor,
+									 @Vendor_address)", item);
 			}
 		}
 	}

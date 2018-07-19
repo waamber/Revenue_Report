@@ -1,19 +1,13 @@
-﻿app.service("ReportService", function ($http, $q, $rootScope) {
+﻿app.service("ReportService", function ($http, $q) {
 
 
     const addReport = function (report) {
-        return $q((resolve, reject) => {
-            $http.post(`/api/report`, report).then(function (results) {
-                resolve(results);
-            }).catch(function (err) {
-                reject("error ReportService", err);
-            });
-        });
-    }
+        return $http.post(`/api/report`, report);
+    };
 
-   
+    const getReport = function (reportName) {
+        return $http.get(`/api/report/${reportName}`);
+    };
 
-
-
-    return { addReport };
+    return { addReport, getReport };
 });

@@ -7,7 +7,7 @@ namespace Revenue_CodeChallenge.Models
 {
 	public class ReportDto
 	{
-		public int ReportId { get; set; }
+		
 		public string ReportName { get; set; }
 	}
 }

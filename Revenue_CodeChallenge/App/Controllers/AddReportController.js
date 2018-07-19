@@ -1,8 +1,10 @@
-﻿app.controller("AddReportController", ["$scope", "$http", "$location", "$routeParams", "ReportService",
-    function ($scope, $http, $location, $routeParams, ReportService) {
+﻿app.controller("AddReportController", ["$scope", "$http", "$location", "$routeParams", "ReportService", "ItemService",
+    function ($scope, $http, $location, $routeParams, ReportService, ItemService) {
 
         document.getElementById("uploaded-report").addEventListener("change", function (e) {
-            var file = e.target.files[0];
+
+            var report = e.target.files[0];
+            $scope.reportName = document.getElementById("fileName").value;
 
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -11,7 +13,7 @@
                 tsvToJson($scope.fileContents);
             };
 
-            reader.readAsText(file);
+            reader.readAsText(report);
         });
 
         function tsvToJson(tsvFile) {
@@ -30,29 +32,46 @@
                 result.push(obj);
             }
 
-            var tsvToJSON = result;
-            arrayOfObjects(tsvToJSON);
-            return tsvToJSON;
-        }
+            $scope.reportItems = result;
+            addReport(result);
+        };
 
-        function arrayOfObjects(array) {
-            var items = [];
+        function addReport(array) {
             var reportObj = {};
-            reportObj.ReportName = "Test Report";
-            ReportService.addReport(reportObj);
-            for (var key in array) {
-                if (array.hasOwnProperty(key)) {
-                    items.push(array[key]);
-                    items.forEach(function (obj) {
-                        {
-                            obj.ReportId = null;
-                        }
-                    });
+            reportObj.ReportName = $scope.reportName;
+            addReportToDb(reportObj);
+        };
 
+        const addReportToDb = function (report) {
+            ReportService.addReport(report).then(function () {
+                getReportId($scope.reportName);
+            }).catch((function (err) {
+                console.log("Error in addReportToDb", err);
+            }));
+        };
 
-                    //ReportService.addReport(array[key]);
-                }
-            };
+        const getReportId = function (reportName) {
+            ReportService.getReport(reportName).then(function (results) {
+                $scope.ReportId = results.data.ReportId;
+                var obj = {
+                    ReportId: $scope.ReportId,
+                    ReportName: reportName
+                };
+                arrayOfItems($scope.reportItems, obj);
+            }).catch(function (err) {
+                console.log("Error in getReportId", err);
+            });
+        };
+
+        const arrayOfItems = function (array, obj) {
+            array.forEach(function (obj) {
+                obj.ReportId = $scope.ReportId;
+                ItemService.addItem(obj).then(function (results) {
+                    //$location.path()
+                }).catch(function (err) {
+                    console.log("Error in ItemService.addItem", err);
+                })
+            });
         };
 
     }

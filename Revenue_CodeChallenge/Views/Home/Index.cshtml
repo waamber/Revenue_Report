@@ -2,11 +2,14 @@
 <div ng-controller="AddReportController">
     <div class="jumbotron">
         <div>
+            <label>File Name</label>
+            <input type="text" id="fileName" />
             <label for="avatar">File:</label>
             <input type="file"
                    id="uploaded-report"
                    accept=".tsv" />
-            @*<button ng-click="addReport()">Upload</button>*@
+
+            @*<button ng-click="addReport(file)">Upload</button>*@
         </div>
     </div>
 </div>

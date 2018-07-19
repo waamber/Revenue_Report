@@ -37,7 +37,7 @@
         };
 
         function addReport(array) {
-        
+
             var reportObj = {};
             reportObj.ReportName = $scope.reportName;
 
@@ -71,21 +71,19 @@
             var items = [];
             for (var key in array) {
                 if (array.hasOwnProperty(key)) {
-
                     items.push(array[key]);
-                    items.forEach(function (obj) {
-                        {
-                            obj.ReportId = $scope.ReportId;
-                            ItemService.addItem(obj).then(function (results) {
-                                $location.path()
-                            }).catch(function (err) {
-                                console.log("Error in ItemService.addItem", err);
-                            });
-                        }
-                    });
-
-                    
                 };
+
+                items.forEach(function (obj) {
+                    {
+                        obj.ReportId = $scope.ReportId;
+                        ItemService.addItem(obj).then(function (results) {
+                            $location.path()
+                        }).catch(function (err) {
+                            console.log("Error in ItemService.addItem", err);
+                        });
+                    }
+                });
             };
         }
     }

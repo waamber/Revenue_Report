@@ -30,13 +30,13 @@ namespace Revenue_CodeChallenge.Services
 									 [Vendor],
 									 [Vendor_address])
 									VALUES
-									 ([@Item],
-									 [@Item_count],
-									 [@Item_price],
-									 [@Item_description],
-									 [@ReportId],
-									 [@Vendor],
-									 [@Vendor_address])", item);
+									 (@Item,
+									 @Item_count,
+									 @Item_price,
+									 @Item_description,
+									 @ReportId,
+									 @Vendor,
+									 @Vendor_address)", item);
 			}
 		}
 	}
